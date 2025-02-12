@@ -1,0 +1,124 @@
+Documentación API ToDo
+
+Endpoints Disponibles
+
+1. Obtener Tareas
+
+
+### 1. Obtener Tareas
+
+GET /API-TO-DO/tasks
+Header: Authorization: testapikey1234567890
+
+Respuesta exitosa:
+
+{
+    "status": "success",
+    "message": "Tareas obtenidas exitosamente",
+    "count": 1,
+    "data": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "title": "Ejemplo tarea",
+            "description": "Descripción de la tarea",
+            "status": "pending",
+            "created_at": "2024-03-20 10:00:00",
+            "updated_at": null
+        }
+    ]
+}
+
+2. Crear Tarea
+
+POST /API-TO-DO/tasks
+Header: Authorization: testapikey1234567890
+Header: Content-Type: application/json
+
+Body:
+{
+    "title": "Nueva tarea",
+    "description": "Descripción de la nueva tarea",
+    "status": "pending"
+}
+
+Nota: status es opcional, por defecto es "pending"
+
+3. Actualizar Tarea
+
+PUT /API-TO-DO/tasks/{id}
+Header: Authorization: testapikey1234567890
+Header: Content-Type: application/json
+
+Body:
+{
+    "title": "Tarea actualizada",
+    "description": "Nueva descripción",
+    "status": "completed"
+}
+
+Nota: Todos los campos en el body son opcionales
+
+4. Marcar Tarea como Completada
+
+DELETE /API-TO-DO/tasks/{id}
+Header: Authorization: testapikey1234567890
+
+5. Obtener Información del Usuario
+
+GET /API-TO-DO/users
+Header: Authorization: testapikey1234567890
+
+Comandos cURL para Pruebas (PowerShell)
+
+# Obtener todas las tareas
+curl -X GET 'http://localhost/API-TO-DO/tasks' -H 'Authorization: testapikey1234567890'
+
+# Crear nueva tarea
+curl -X POST 'http://localhost/API-TO-DO/tasks' `
+-H 'Authorization: testapikey1234567890' `
+-H 'Content-Type: application/json' `
+-d '{\"title\":\"Nueva tarea\",\"description\":\"Descripción de prueba\",\"status\":\"pending\"}'
+
+# Actualizar tarea
+curl -X PUT 'http://localhost/API-TO-DO/tasks/1' `
+-H 'Authorization: testapikey1234567890' `
+-H 'Content-Type: application/json' `
+-d '{\"title\":\"Tarea actualizada\",\"status\":\"completed\"}'
+
+# Marcar tarea como completada
+curl -X DELETE 'http://localhost/API-TO-DO/tasks/1' -H 'Authorization: testapikey1234567890'
+
+# Obtener información del usuario
+curl -X GET 'http://localhost/API-TO-DO/users' -H 'Authorization: testapikey1234567890'
+
+Estados de Tarea
+pending: Tarea pendiente
+completed: Tarea completada
+
+Códigos de Respuesta
+200: Éxito
+400: Error de validación
+401: No autorizado
+404: No encontrado
+500: Error interno del servidor
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+EJEMPLOS DE COMANDOS CURL:
+
+1. GET /tasks
+curl -X GET 'http://localhost/API-TO-DO/tasks' -H 'Authorization: testapikey1234567890'
+
+2. POST /tasks
+curl -X POST 'http://localhost/API-TO-DO/tasks' -H 'Authorization: testapikey1234567890' -H 'Content-Type: application/json' -d '{"title":"Nueva Tarea","description":"Descripción de la tarea","status":"pending"}'
+
+3. PUT /tasks/{id}
+curl -X PUT 'http://localhost/API-TO-DO/tasks/2' -H 'Authorization: testapikey1234567890' -H 'Content-Type: application/json' -d '{"title":"Tarea Actualizada","description":"Nueva descripción","status":"completed"}'
+
+4. DELETE /tasks/{id}
+curl -X DELETE 'http://localhost/API-TO-DO/tasks/3' -H 'Authorization: testapikey1234567890'
+
+5. GET /users
+curl -X GET 'http://localhost/API-TO-DO/users' -H 'Authorization: testapikey1234567890'
+
+
